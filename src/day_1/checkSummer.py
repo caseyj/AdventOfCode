@@ -17,3 +17,12 @@ def box_has_n_repeat(repeat_val: int, box_counter: Counter)->bool:
         if count == repeat_val:
             return True
     return False
+
+
+def box_2_3_counts(box_counter: Counter)->dict:
+    box_additions = {2:0, 3: 0}
+    if box_has_n_repeat(2, box_counter):
+        box_additions[2] = 1
+    if box_has_n_repeat(3, box_counter):
+        box_additions[3] = 1
+    return box_additions
