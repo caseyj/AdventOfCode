@@ -91,7 +91,25 @@ class testOpActionRun(unittest.TestCase):
         self.assertEqual(0, self.minus_1.run(1))
         self.assertEqual(2, self.plus_1.run(1))
     
+class testMultiOpsRun(unittest.TestCase):
+    def setUp(self):
+        self.minus_1 = frequency.split_string("-1")
+        self.plus_1 = frequency.split_string("+1")
+    
+    def testNone(self):
+        self.assertEqual(0, frequency.multi_ops_run())
+    
+    def testMin1x3(self):
+        min3 = [self.minus_1, self.minus_1, self.minus_1]
+        self.assertEqual(-3, frequency.multi_ops_run(min3))
 
+    def testPlus1x3(self):
+        plus3 = [self.plus_1, self.plus_1, self.plus_1]
+        self.assertEqual(3, frequency.multi_ops_run(plus3))        
+    
+    def testPlus1Min1(self):
+        zero = [self.plus_1, self.minus_1]
+        self.assertEqual(0, frequency.multi_ops_run(zero))
 
 
 if __name__ == '__main__':

@@ -71,3 +71,18 @@ def split_string(operation_input: str)->OpAction:
     integ = detect_integer(operation_input[1:])
     return OpAction(integ, op)
 
+def multi_ops_run(ops_list: [OpAction] = [])->int:
+    """
+    from a list of ops_actions, this computes from 0, 
+    a total of all of the additions that occur in the ops_act list
+
+    Args:
+        ops_list: [OpsAction] a list of operations to be performed
+    
+    Returns:
+        integer which is the total addition of all operations found.
+    """
+    tally = 0
+    for ops_act in ops_list:
+        tally = ops_act.run(tally)
+    return tally
