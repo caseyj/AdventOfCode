@@ -111,6 +111,41 @@ class testMultiOpsRun(unittest.TestCase):
         zero = [self.plus_1, self.minus_1]
         self.assertEqual(0, frequency.multi_ops_run(zero))
 
+class testdetRepeat(unittest.TestCase):
+
+    def setUp(self):
+        self.minus_1 = frequency.split_string("-1")
+        self.plus_1 = frequency.split_string("+1")
+        self.plus_3 = frequency.split_string("+3")
+        self.minus_4 = frequency.split_string("-4")
+        self.plus_4 = frequency.split_string("+4")
+        self.minus_2 = frequency.split_string("-2")
+        self.plus_2 = frequency.split_string("+2")
+        self.minus_5 = frequency.split_string("-5")
+        self.plus_5 = frequency.split_string("+5")
+        self.minus_8 = frequency.split_string("-8")
+        self.plus_8 = frequency.split_string("+8")
+        self.minus_7 = frequency.split_string("-7")
+        self.plus_7 = frequency.split_string("+7")
+        self.minus_6 = frequency.split_string("-6")
+        self.plus_6 = frequency.split_string("+6")
+
+    def test0(self):
+        testCase = [self.minus_1, self.plus_1]
+        self.assertEqual(0, frequency.det_repeat(testCase))
+    
+    def test10(self):
+        testCase = [self.plus_3, self.plus_3, self.plus_4, self.minus_2, self.minus_4]
+        self.assertEqual(10, frequency.det_repeat(testCase))
+    
+    def test5(self):
+        testCase = [self.minus_6, self.plus_3, self.plus_8, self.plus_5, self.minus_6]
+        self.assertEqual(5, frequency.det_repeat(testCase))
+    
+    def test14(self):
+        testCase = [self.plus_7, self.plus_7, self.minus_2, self.minus_7, self.minus_4]
+        self.assertEqual(14, frequency.det_repeat(testCase))
+
 
 if __name__ == '__main__':
     unittest.main()

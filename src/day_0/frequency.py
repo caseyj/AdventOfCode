@@ -86,3 +86,27 @@ def multi_ops_run(ops_list: [OpAction] = [])->int:
     for ops_act in ops_list:
         tally = ops_act.run(tally)
     return tally
+
+def det_repeat(ops_list:  [OpAction] = [])->int:
+    """
+    from a list of ops_actions, this computes from 0, 
+    a total of all of the additions that occur in the ops_act list, and will 
+    return the first integer that appears twice, this repeats running until a 
+    repeat is found
+
+    Args:
+        ops_list: [OpsAction] a list of operations to be performed
+    
+    Returns:
+        Integer that repeats first.
+    """
+    tally = 0
+    tally_track = set()
+    tally_track.add(tally)
+    while(True):
+        for ops_act in ops_list:
+            tally = ops_act.run(tally)
+            if tally not in tally_track:
+                tally_track.add(tally)
+            else:
+                return tally
