@@ -30,5 +30,44 @@ def detect_integer(op_num: str)->int:
     else:
         raise TypeError
 
-def operation():
-    pass
+class OpAction():
+    op_integer=0
+    op_direction=None
+
+    def __init__(self, op_integer: int = 0, op_direction: Operation = None):
+        self.op_integer = op_integer
+        self.op_direction = op_direction
+
+    def run(self, input: int=0)->int:
+        """
+        Runs the operation on a given integer input, defaulting with value 0
+
+        Args:
+            input: int The input to the function, if this is not an integer it 
+            will still run as if the actual input was 0
+
+        Returns:
+            integer of the resulting operation
+        """
+        if self.op_direction == Operation.add:
+            return self.add(input)
+        if self.op_direction == Operation.sub:
+            return self.sub(input)
+        else:
+            raise TypeError
+
+    def add(self, input: int)->int:
+        return input + self.op_integer
+    
+    def sub(self, input: int)->int:
+        return input - self.op_integer 
+
+
+def split_string(operation_input: str)->OpAction:
+    """
+    Creates an OpAction object from a given input string.
+    """
+    op = detect_operation(operation_input[0])
+    integ = detect_integer(operation_input[1:])
+    return OpAction(integ, op)
+
