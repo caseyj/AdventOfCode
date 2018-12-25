@@ -19,7 +19,7 @@ def detect_operation(op_string: str)->Operation:
     else:
         raise TypeError
 
-def detectInteger(op_num: str)->int:
+def detect_integer(op_num: str)->int:
     """
     Gets the integer representation of a string. Used to get the values which will be added by the operation function.
     Args:
