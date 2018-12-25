@@ -20,9 +20,21 @@ def box_has_n_repeat(repeat_val: int, box_counter: Counter)->bool:
 
 
 def box_2_3_counts(box_counter: Counter)->dict:
+    """
+    Takes in the counter representation of a box and detects the checksum 
+    if it contains 2 or 3 repeated letters
+
+
+    """
     box_additions = {2:0, 3: 0}
     if box_has_n_repeat(2, box_counter):
         box_additions[2] = 1
     if box_has_n_repeat(3, box_counter):
         box_additions[3] = 1
     return box_additions
+
+def dict_adder(dict_a: dict, dict_b)->dict:
+    dict_a[2] = dict_a[2] + dict_b[2]
+    dict_a[3] = dict_a[3] + dict_b[3]
+    return dict_a
+

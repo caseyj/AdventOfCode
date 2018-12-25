@@ -51,5 +51,19 @@ class testBoxNRepeat(unittest.TestCase):
     def test_Repeat3n2o(self):
         self.assertEqual(self.o_2_n_3, checkSummer.box_2_3_counts(self.repeat3n2o))
 
+class TestdictAdder(unittest.TestCase):
+
+    def setUp(self):
+        self.zerozero = {2:0, 3:0}
+        self.zero_2_n_3 = {2:0, 3:1}
+        self.n_2_zero_3 = {2:1, 3:0}
+        self.o_2_n_3 = {2:1, 3:1}
+    
+    def testZero(self):
+        self.assertEqual(self.zerozero, checkSummer.dict_adder(self.zerozero, self.zerozero))
+    
+    def test2_1_3_0(self):
+        self.assertEqual(self.n_2_zero_3, checkSummer.dict_adder(self.zerozero, self.n_2_zero_3))
+
 if __name__ == '__main__':
     unittest.main()
