@@ -22,7 +22,7 @@ class testBoxNRepeat(unittest.TestCase):
     def test_Repeat3n(self):
         self.assertTrue(checkSummer.box_has_n_repeat(3, self.repeat3n))
 
-class testBoxNRepeat(unittest.TestCase):
+class testBox32Repeat(unittest.TestCase):
 
     def setUp(self):
         self.emptyString = Counter(list(""))
