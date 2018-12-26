@@ -57,3 +57,21 @@ class FabricTracker():
             for y_vals in range(0,height):
                 claims.append((x_vals+x_offset, y_vals+y_offset))
         return claims
+
+def generate_claim(claim: str)->[int]:
+    """
+    Takes in a string of a claim made by an elf and extracts data needed to 
+    generate the claim coordinates
+
+    Args:
+        claim: str In format "#<int> @ <x_offset>,<y_offset>: <width>x<length>"
+    Returns:
+        list of integers which are the inputs to generate claim coordinates.
+    """
+    split_at = claim.split('@')[1]
+    split_x_offset = split_at.split(',')
+    x_offset = split_x_offset[0].strip()
+    split_y_offset = split_x_offset[1].split(':')
+    y_offset = split_y_offset[0].strip()
+    split_dimensions = split_y_offset[1].split('x')
+    return [int(x_offset), int(y_offset), int(split_dimensions[0].strip()), int(split_dimensions[1].strip())]

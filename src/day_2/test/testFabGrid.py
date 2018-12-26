@@ -46,3 +46,19 @@ class TestGenerateClaims(unittest.TestCase):
                 self.five_5_2x2[3]
             )
         )
+
+class TestGenerateClaim(unittest.TestCase):
+
+    def setUp(self):
+        self.one_1_4x4 = "#1 @ 1,3: 4x4"
+        self.three_1_4x4 = "#2 @ 3,1: 4x4"
+        self.five_5_2x2 = "#3 @ 5,5: 2x2"
+    
+    def testOne_1_4x4(self):
+        self.assertEqual([1,3,4,4], fabricSplit.generate_claim(self.one_1_4x4))
+    
+    def testThree_1_4x4(self):
+        self.assertEqual([3,1,4,4], fabricSplit.generate_claim(self.three_1_4x4))
+    
+    def testFive_5_2x2(self):
+        self.assertEqual([5,5,2,2], fabricSplit.generate_claim(self.five_5_2x2))
