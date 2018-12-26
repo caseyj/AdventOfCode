@@ -55,10 +55,31 @@ class TestGenerateClaim(unittest.TestCase):
         self.five_5_2x2 = "#3 @ 5,5: 2x2"
     
     def testOne_1_4x4(self):
-        self.assertEqual([1,3,4,4], fabricSplit.generate_claim(self.one_1_4x4))
+        self.assertEqual([1,3,4,4,'1'], fabricSplit.generate_claim_dimensions(self.one_1_4x4))
     
     def testThree_1_4x4(self):
-        self.assertEqual([3,1,4,4], fabricSplit.generate_claim(self.three_1_4x4))
+        self.assertEqual([3,1,4,4, '2'], fabricSplit.generate_claim_dimensions(self.three_1_4x4))
     
     def testFive_5_2x2(self):
-        self.assertEqual([5,5,2,2], fabricSplit.generate_claim(self.five_5_2x2))
+        self.assertEqual([5,5,2,2, '3'], fabricSplit.generate_claim_dimensions(self.five_5_2x2))
+
+class TestMultiClaimCollisionDetection(unittest.TestCase):
+
+    def setUp(self):
+        one_1_4x4 = "#1 @ 1,3: 4x4"
+        three_1_4x4 = "#2 @ 3,1: 4x4"
+        five_5_2x2 = "#3 @ 5,5: 2x2"
+
+        self.fab = fabricSplit.FabricTracker()
+        self.fab_dims = [
+            fabricSplit.generate_claim_dimensions(one_1_4x4),
+            fabricSplit.generate_claim_dimensions(three_1_4x4),
+            fabricSplit.generate_claim_dimensions(five_5_2x2)
+        ]
+    
+    def testMultiClaimCollision(self):
+        for claim in self.fab_dims:
+            self.fab.make_multiple_claims(self.fab.generate_claims(claim[0], claim[1], claim[2], claim[3]), claim[4])
+        self.assertEqual(len(self.fab.intact_tickets), 1)
+
+
